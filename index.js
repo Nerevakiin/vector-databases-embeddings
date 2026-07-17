@@ -1,4 +1,4 @@
-import {openai, supabase} from './config.js';
+import { openai, supabase } from './config.js';
 import podcasts from './content.js'
 
 
@@ -7,22 +7,29 @@ import podcasts from './content.js'
 // Also map each array element/string, with its respective embedding.
 async function main(input) {
   const data = await Promise.all(
-    input.map( async (textChunk) => {
-        const embeddingResponse = await openai.embeddings.create({
-            model: "text-embedding-ada-002",
-            input: textChunk,
-        });
-        return {
-          content: textChunk,
-          embedding: embeddingResponse.data[0].embedding
-        }
-    })    
+    input.map(async (textChunk) => {
+      const embeddingResponse = await openai.embeddings.create({
+        model: "text-embedding-ada-002",
+        input: textChunk,
+      });
+      return {
+        content: textChunk,
+        embedding: embeddingResponse.data[0].embedding
+      }
+    })
   );
-  
+
   // Insert all data at once with the content and embeddings into Supabase
   // on the 'documents' table that was created
-  await supabase.from('documents').insert(data)
-  console.log('Embedding and storing complete!');
+  try {
+    await supabase.from('documents').insert(data)
+    console.log('Embedding and storing complete!');
+
+  } catch (err) {
+    console.error('error occured: ', err)
+    
+  }
+
 }
 
 main(podcasts);

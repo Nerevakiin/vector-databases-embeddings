@@ -4,5 +4,6 @@
     "@supabase/supabase-js": "^2.110.7",
     "dotenv": "^17.4.2",
     "openai": "^6.47.0"
-  }
+  },
+  "type": "module"
 }
