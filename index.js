@@ -2,8 +2,6 @@ import {openai, supabase} from './config.js';
 import podcasts from './content.js'
 
 
-
-
 /** Create embeddings representing the input text */
 // Make it a Promise to get the entire object as one thing
 // Also map each array element/string, with its respective embedding.
