@@ -1,8 +1,11 @@
 {
   "dependencies": {
+    "@langchain/core": "^1.2.3",
+    "@langchain/textsplitters": "^1.0.1",
     "@supabase/ssr": "^0.12.3",
     "@supabase/supabase-js": "^2.110.7",
     "dotenv": "^17.4.2",
+    "langchain": "^1.5.3",
     "openai": "^6.47.0"
   },
   "type": "module"
