@@ -1,4 +1,4 @@
-import {openai, supabase } from './config.js'
+import { openai, supabase } from './config.js'
 
 // User query about podcasts
 const query = "Jammin' in the Big Easy"
@@ -7,7 +7,7 @@ main(query)
 // Create an embedding from the user input and return 
 // a semantically matching text chunk from the database
 async function main(input) {
-    
+
     // Create a vector embedding representing the input text
     const embeddingResponse = await openai.embeddings.create({
         model: "text-embedding-ada-002",
