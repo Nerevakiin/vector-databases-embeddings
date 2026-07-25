@@ -13,7 +13,7 @@ import { promises as fs } from 'fs'
 
 
 // Query about movie data
-const query = ""
+const query = "tell me a good short movie to watch"
 main(query)
 
 
@@ -64,8 +64,8 @@ async function getChatCompletion(text, query) {
     const response = await openai.chat.completions.create({
         model: 'gpt-5-nano',
         messages: chatMessages,
-        temperature: 0.5,
-        frequency_penalty: 0.5
+        // temperature: 0.5,
+        // frequency_penalty: 0.5
     })
     console.log(response.choices[0].message.content)
 }
