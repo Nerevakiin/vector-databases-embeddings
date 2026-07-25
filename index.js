@@ -9,7 +9,7 @@ async function main(input) {
   const data = await Promise.all(
     input.map( async (textChunk) => {
         const embeddingResponse = await openai.embeddings.create({
-            model: "text-embedding-ada-002",
+            model:  "text-embedding-ada-002",
             input: textChunk,
         });
         return {

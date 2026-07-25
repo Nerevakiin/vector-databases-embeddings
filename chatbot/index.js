@@ -1,4 +1,4 @@
-import { openai, supabase } from '../config'
+import { openai, supabase } from '../config.js'
 
 const form = document.querySelector('form');
 const input = document.querySelector('input');
