@@ -13,7 +13,7 @@ import { promises as fs } from 'fs'
 
 
 // Query about movie data
-const query = "tell me a good short movie to watch"
+const query = "tell me good short movies to watch to laugh"
 main(query)
 
 
@@ -39,9 +39,13 @@ async function findNearestMatch(embedding){
     const {data} = await supabase.rpc('match_movies', {
         query_embedding: embedding,
         match_threshold: 0.50,
-        match_count: 1
+        match_count: 4
     })
-    return data[0].content
+
+    // Manage multiple returned matches
+    const match = data.map(obj => obj.content).join('\n')
+    console.log(match)
+    return match
 }
 
 
@@ -74,6 +78,9 @@ async function getChatCompletion(text, query) {
 
 
 // =========================================================================================
+// ================================ BASIC DB CONFIG ========================================
+// =========================================================================================
+
 
 /* Split movies.txt into text chunks.
 Return LangChain's "output" – the array of Document objects. */
